@@ -1,69 +1,136 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>NcatBot 项目主页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NcatBot插件商店</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ddd;
+        }
+
+        #plugin-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .plugin-card {
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            border-radius: 10px;
+            margin: 20px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .plugin-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .plugin-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .plugin-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .plugin-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .plugin-desc {
+            font-size: 1em;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .download-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .download-btn:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            #plugin-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .plugin-card {
+                width: 80%;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <header>
-        <h1>NcatBot</h1>
-        <p>基于Napcat的PythonSDK</p>
+        <h1>NcatBot插件商店</h1>
+        <nav>
+            <a href="about.html">关于NcatBot</a>
+        </nav>
     </header>
-    <main>
-        <section>
-            <h2>项目介绍</h2>
-            <p>✨ 基于 NapcatQQ API 实现的机器人框架 ✨</p>
-        </section>
-        <section>
-            <h2>实现进度</h2>
-            <ul>
-                <li>各类消息监听</li>
-                <li>各类消息发送</li>
-                <li>各类接口的定义与测试</li>
-                <li>windows和Linux发送markdown</li>
-                <li>添加了各类设置登录号的接口</li>
-                <li>不知道自己还做了什么...</li>
-            </ul>
-        </section>
-        <section>
-            <h2>帮助文档</h2>
-            <ol>
-                <li><a href="https://github.com/NapNeko/NapCatQQ/releases">下载NapCat</a> 找到 NapCat.Shell.zip 并解压</li>
-                <li>启动NapCat：
-                    <ul>
-                        <li>第一次启动机器人：直接双击 launcher.bat 文件</li>
-                        <li>启动已经扫码登录过的机器人，在当前目录地址栏输入 cmd 或右键打开命令行，在当前目录打开 cmd 命令行，输入 start launcher.bat [你的QQ号]</li>
-                    </ul>
-                </li>
-                <li>部分使用参考代码可查看 main.py</li>
-                <li>example 文件夹里是每个经过测试的 api 类别例子，没有标注其他情况的是完全执行成功过的，可以使用异步正常插入代码中</li>
-                <li>每个 api 提供了有限帮助支持（在编辑器里按住 Ctrl 并单击 api 方法即可跳转）</li>
-                <li>部分教程可查看 <a href="https://blog.csdn.net/qq_71745595/article/details/143988362">NapCatQQ开发机器人PythonSDK</a></li>
-                <li>如果可以，希望你可以帮助完善😄</li>
-            </ol>
-        </section>
-        <section>
-            <h2>简单的示例</h2>
-            <p>在 example 和 main.py 中都有简单的例子，欢迎参考</p>
-        </section>
-        <section>
-            <h2>欢迎交流开发，贡献者们</h2>
-            <p>👋欢迎加入 <a href="https://qm.qq.com/q/dRTyqlFCRG">学习QQ群</a> ！</p>
-            <p>🔗<a href="https://mp.weixin.qq.com/s/8i-AoSQFf0nXJRRJLrPxLQ">微信公众号</a></p>
-        </section>
-        <section>
-            <h2>贡献者</h2>
-            <ul>
-                <li><a href="https://github.com/liyihao1110">liyihao1110</a></li>
-                <li><a href="https://github.com/gaojj2000">gaojj2000</a></li>
-                <li><a href="https://github.com/Isaaczhr">Isaaczhr</a></li>
-            </ul>
-        </section>
-        <section>
-            <h2>致谢</h2>
-            <p>感谢 <a href="https://github.com/NapNeko/NapCatQQ">NapCatQQ</a></p>
-        </section>
-    </main>
+    <div id="plugin-container">
+        <div class="plugin-card">
+            <div class="plugin-content">
+                <h2 class="plugin-title">XunfeiGPT</h2>
+                <p class="plugin-desc">这是NcatBot的默认插件，由管理者进行更新，可以调用讯飞AI进行大模型对话</p>
+                <button class="download-btn" data-plugin="XunfeiGPT">下载</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.download-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                window.open('https://isaacz.lanzoul.com/b00rnlmcwj', '_blank');
+                alert('请手动输入密码5u1e并下载 XunfeiGPT.zip');
+            });
+        });
+    </script>
 </body>
-</html>
 
+</html>
