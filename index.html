@@ -65,7 +65,8 @@
 
         .plugin-content {
             padding: 20px;
-            text-align: center;
+            text-align: left; /* 确保内容左对齐 */
+            position: relative;
         }
 
         .plugin-title {
@@ -78,6 +79,12 @@
             font-size: 1em;
             margin-bottom: 20px;
             color: #666;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: left; /* 确保文本左对齐 */
         }
 
         .download-btn {
