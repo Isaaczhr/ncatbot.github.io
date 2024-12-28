@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 
 <head>
     <meta name="baidu-site-verification" content="codeva-gBaQftDpAh" />
@@ -21,7 +21,7 @@
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        
+
         nav a {
             color: white;
             margin: 0 15px;
@@ -124,31 +124,22 @@
             }
         }
 
-        #searchContainer {
+        /* Controls Container Styles */
+        .controls-container {
             display: flex;
+            justify-content: center;
             align-items: center;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        #searchContainer.show {
-            display: block;
-            opacity: 1;
-        }
-
-        #searchContainer input {
-            width: 300px;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            margin-top: 20px;
+            gap: 10px; /* 元素之间的统一间距 */
+            transition: all 0.5s ease-out; /* Fast first, then slow */
         }
 
         /* Custom Dropdown Styles */
         .custom-dropdown {
             position: relative;
             display: inline-block;
-            margin-right: 10px;
             font-size: 16px;
+            transition: all 0.3s ease; /* Smooth transition */
         }
 
         .custom-dropdown-button {
@@ -161,11 +152,14 @@
             cursor: pointer;
             width: 160px;
             text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease; /* Smooth transition */
         }
 
         .custom-dropdown-button::after {
             content: '▼';
-            float: right;
             margin-left: 10px;
         }
 
@@ -178,12 +172,14 @@
             border: 1px solid #4CAF50;
             border-radius: 4px;
             z-index: 1;
+            transition: all 0.3s ease; /* Smooth transition */
         }
 
         .custom-dropdown-content div {
             color: black;
             padding: 8px 16px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         .custom-dropdown-content div:hover {
@@ -194,11 +190,46 @@
             display: block;
         }
 
-        /* 添加分页容器样式 */
+        /* Search Icon Button Styles */
+        #searchIcon {
+            font-size: 18px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            transition: all 0.3s ease; /* Smooth transition */
+        }
+
+        /* Search Container Styles */
+        #searchContainer {
+            opacity: 0;
+            max-width: 0;
+            overflow: hidden;
+            transition: opacity 0.5s ease-out, max-width 0.5s ease-out; /* Smooth transition */
+            display: flex;
+        }
+
+        #searchContainer.show {
+            opacity: 1;
+            max-width: 400px; /* Adjust according to input width */
+        }
+
+        #searchContainer input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            height: 40px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: all 0.5s ease-out; /* Smooth transition */
+        }
+
+        /* Pagination Styles */
         .pagination {
             display: flex;
             justify-content: center;
             margin: 20px 0;
+            transition: all 0.5s ease-out; /* Smooth transition */
         }
 
         .pagination button {
@@ -209,24 +240,11 @@
             margin: 0 5px;
             cursor: pointer;
             border-radius: 4px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .pagination button.active {
             background-color: #45a049;
-        }
-
-        /* 统一搜索框和排序框的高度 */
-        .custom-dropdown-button, #searchInput {
-            height: 40px;
-            padding: 8px 12px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-
-        /* 移除搜索框的内联样式 */
-        #searchInput {
-            width: 300px;
-            /* padding:8px; */ /* 移除此行 */
         }
     </style>
 </head>
@@ -235,12 +253,14 @@
     <header>
         <h1>NcatBot插件商店</h1>
         <nav>
-            <a href="about.html">关于NcatBot</a><a href="https://docs.ncatbot.xyz">NcatBot文档</a><a href="https://github.com/Isaaczhr/NcatBotPlugins">提交你的插件</a>
+            <a href="about.html">关于NcatBot</a>
+            <a href="https://docs.ncatbot.xyz">NcatBot文档</a>
+            <a href="https://github.com/Isaaczhr/NcatBotPlugins">提交你的插件</a>
         </nav>
     </header>
 
-    <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
-        <div class="custom-dropdown" id="sortDropdown" style="margin-right:10px;">
+    <div class="controls-container">
+        <div class="custom-dropdown" id="sortDropdown">
             <button class="custom-dropdown-button">默认排序</button>
             <div class="custom-dropdown-content">
                 <div data-sort="default">默认排序</div>
@@ -248,11 +268,11 @@
             </div>
         </div>
         
-        <button id="searchIcon" style="font-size:18px; border:none; background:none; cursor:pointer; margin-right:10px;">
+        <button id="searchIcon">
             🔍搜索
         </button>
         
-        <div id="searchContainer" style="display:inline-block;">
+        <div id="searchContainer">
             <input type="text" id="searchInput" placeholder="搜索插件...">
         </div>
     </div>
@@ -290,6 +310,8 @@
                 var selectedSort = this.getAttribute("data-sort");
                 document.querySelector(".custom-dropdown-button").textContent = this.textContent;
                 sortPlugins(selectedSort);
+                // Close the dropdown after selection
+                document.getElementById("sortDropdown").classList.remove("show");
             });
         });
 
@@ -349,9 +371,7 @@
                     return aTitle.localeCompare(bTitle);
                 });
             } else { // default sort
-                filteredPlugins.sort(function(a, b) {
-                    return originalOrder.indexOf(a) - originalOrder.indexOf(b);
-                });
+                filteredPlugins = originalOrder.slice();
             }
             currentPage = 1;
             displayPlugins(currentPage);
@@ -389,6 +409,13 @@
             }
         }
 
+        // Toggle Search Container with animation
+        document.getElementById('searchIcon').addEventListener('click', function() {
+            var searchContainer = document.getElementById('searchContainer');
+            searchContainer.classList.toggle('show');
+        });
+
+        // Handle Search Input
         document.getElementById('searchInput').addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
             filteredPlugins = originalOrder.filter(card => {
@@ -397,17 +424,13 @@
                 const desc = card.querySelector('.plugin-desc').textContent.toLowerCase();
                 return englishName.includes(searchTerm) || chineseName.includes(searchTerm) || desc.includes(searchTerm);
             });
-            const currentSort = document.querySelector(".custom-dropdown-button").textContent;
-            if(currentSort === "按英文音序") {
+            const currentSortButton = document.querySelector(".custom-dropdown-button").textContent;
+            if(currentSortButton === "按英文音序") {
                 sortPlugins("alphabetical");
             } else {
                 sortPlugins("default");
             }
             displayPlugins(currentPage);
-        });
-
-        document.getElementById('searchIcon').addEventListener('click', function() {
-            document.getElementById('searchContainer').classList.toggle('show');
         });
     </script>
 </body>
