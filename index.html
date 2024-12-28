@@ -70,22 +70,29 @@
             padding: 20px;
         }
 
+        .plugin-titles {
+            display: flex;
+            align-items: baseline;
+            gap: 10px; /* 标题之间的间距 */
+        }
+
         .plugin-title {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: #333;
+            font-size: 1.5em; /* 保持现有字体大小 */
+            margin: 0;
+        }
+
+        .plugin-chinese-title {
+            font-size: 1.5em; /* 保持现有字体大小 */
+            margin: 0;
+            color: #555; /* 可选：调整中文标题颜色 */
         }
 
         .plugin-desc {
-            font-size: 1em;
-            margin-bottom: 20px;
-            color: #666;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
+            display: block;
+            min-height: 4.5em; /* 假设行高为1.5em，三行高度 */
+            line-height: 1.5em;
             overflow: hidden;
             text-overflow: ellipsis;
-            text-align: left; /* 确保文本左对齐 */
         }
 
         .download-btn {
@@ -285,8 +292,10 @@
 
                         card.innerHTML = `
                             <div class="plugin-content">
-                                <h2 class="plugin-title">${plugin.title}</h2>
-                                <p class="plugin-chinese-title">${plugin.chineseTitle}</p>
+                                <div class="plugin-titles">
+                                    <h2 class="plugin-title">${plugin.title}</h2>
+                                    <p class="plugin-chinese-title">${plugin.chineseTitle}</p>
+                                </div>
                                 <p class="plugin-desc">${plugin.description}</p>
                                 <button class="download-btn" data-plugin="${plugin.title}">下载</button>
                             </div>
