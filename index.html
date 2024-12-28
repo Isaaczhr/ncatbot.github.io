@@ -21,7 +21,7 @@
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-
+        
         nav a {
             color: white;
             margin: 0 15px;
@@ -342,20 +342,16 @@
 
         function sortPlugins(sortOption) {
             sortOption = sortOption || "default";
-            var items = Array.from(pluginContainer.querySelectorAll(".plugin-card"));
             if (sortOption === "alphabetical") {
-                items.sort(function (a, b) {
-                    var aTitle = a.querySelector(".plugin-title").innerText;
-                    var bTitle = b.querySelector(".plugin-title").innerText;
+                filteredPlugins.sort(function(a, b) {
+                    var aTitle = a.querySelector(".plugin-title").innerText.toLowerCase();
+                    var bTitle = b.querySelector(".plugin-title").innerText.toLowerCase();
                     return aTitle.localeCompare(bTitle);
                 });
             } else {
-                items = originalOrder;
+                filteredPlugins = originalOrder.slice();
             }
-            pluginContainer.innerHTML = "";
-            items.forEach(function (item) {
-                pluginContainer.appendChild(item);
-            });
+            currentPage = 1;
             displayPlugins(currentPage);
         }
 
