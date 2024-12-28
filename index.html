@@ -131,7 +131,8 @@
             align-items: center;
             margin-top: 20px;
             gap: 10px; /* 元素之间的统一间距 */
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Non-linear animation: ease-out */
+            /* 仅对需要变化的属性应用过渡 */
+            transition: opacity 0.5s ease-out, max-width 0.5s ease-out;
         }
 
         /* Custom Dropdown Styles */
@@ -139,7 +140,8 @@
             position: relative;
             display: inline-block;
             font-size: 16px;
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Non-linear animation: ease-out */
+            /* 仅对需要变化的属性应用过渡 */
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         }
 
         .custom-dropdown-button {
@@ -155,7 +157,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Non-linear animation: ease-out */
+            transition: background-color 0.3s ease, transform 0.5s ease-out; /* 仅对需要变化的属性应用过渡 */
         }
 
         .custom-dropdown-button::after {
@@ -172,14 +174,14 @@
             border: 1px solid #4CAF50;
             border-radius: 4px;
             z-index: 1;
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Non-linear animation: ease-out */
+            transition: opacity 0.3s ease-out; /* 添加过渡 */
         }
 
         .custom-dropdown-content div {
             color: black;
             padding: 8px 16px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s ease;
         }
 
         .custom-dropdown-content div:hover {
@@ -188,6 +190,7 @@
 
         .custom-dropdown.show .custom-dropdown-content {
             display: block;
+            opacity: 1;
         }
 
         /* Search Icon Button Styles */
@@ -196,7 +199,7 @@
             border: none;
             background: none;
             cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Non-linear animation: ease-out */
+            transition: transform 0.5s ease-out; /* 仅对需要变化的属性应用过渡 */
         }
 
         /* Search Container Styles */
@@ -204,13 +207,15 @@
             opacity: 0;
             max-width: 0;
             overflow: hidden;
-            transition: opacity 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), max-width 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex;
+            align-items: center;
+            /* 仅对需要变化的属性应用过渡 */
+            transition: opacity 0.5s ease-out, max-width 0.5s ease-out;
         }
 
         #searchContainer.show {
             opacity: 1;
-            max-width: 400px; /* Adjust according to input width */
+            max-width: 400px; /* 根据输入框宽度调整 */
         }
 
         #searchContainer input {
@@ -221,7 +226,7 @@
             height: 40px;
             box-sizing: border-box;
             font-size: 16px;
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Non-linear animation: ease-out */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease; /* 仅对需要变化的属性应用过渡 */
         }
 
         /* Pagination Styles */
@@ -229,7 +234,7 @@
             display: flex;
             justify-content: center;
             margin: 20px 0;
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Non-linear animation: ease-out */
+            transition: opacity 0.5s ease-out; /* 仅对需要变化的属性应用过渡 */
         }
 
         .pagination button {
