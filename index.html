@@ -348,8 +348,10 @@
                     var bTitle = b.querySelector(".plugin-title").innerText.toLowerCase();
                     return aTitle.localeCompare(bTitle);
                 });
-            } else {
-                filteredPlugins = originalOrder.slice();
+            } else { // default sort
+                filteredPlugins.sort(function(a, b) {
+                    return originalOrder.indexOf(a) - originalOrder.indexOf(b);
+                });
             }
             currentPage = 1;
             displayPlugins(currentPage);
@@ -395,7 +397,12 @@
                 const desc = card.querySelector('.plugin-desc').textContent.toLowerCase();
                 return englishName.includes(searchTerm) || chineseName.includes(searchTerm) || desc.includes(searchTerm);
             });
-            currentPage = 1;
+            const currentSort = document.querySelector(".custom-dropdown-button").textContent;
+            if(currentSort === "按英文音序") {
+                sortPlugins("alphabetical");
+            } else {
+                sortPlugins("default");
+            }
             displayPlugins(currentPage);
         });
 
