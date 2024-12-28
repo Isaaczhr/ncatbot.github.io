@@ -405,6 +405,27 @@
             document.getElementById('searchContainer').classList.toggle('show');
         });
     </script>
+    <script>
+        document.getElementById('searchIcon').addEventListener('click', function() {
+            const searchContainer = document.getElementById('searchContainer');
+            searchContainer.style.display = searchContainer.style.display === 'none' ? 'block' : 'none';
+        });
+
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const plugins = document.querySelectorAll('.plugin-card');
+
+            plugins.forEach(plugin => {
+                const title = plugin.querySelector('.plugin-title').textContent.toLowerCase();
+                const description = plugin.querySelector('.plugin-desc').textContent.toLowerCase();
+                if (title.includes(query) || description.includes(query)) {
+                    plugin.style.display = 'block';
+                } else {
+                    plugin.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
