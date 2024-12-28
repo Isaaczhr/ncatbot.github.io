@@ -409,10 +409,13 @@
             }
         }
 
-        // Toggle Search Container with animation
+        // Toggle Search Container with animation and autofocus
         document.getElementById('searchIcon').addEventListener('click', function() {
             var searchContainer = document.getElementById('searchContainer');
             searchContainer.classList.toggle('show');
+            if (searchContainer.classList.contains('show')) {
+                document.getElementById('searchInput').focus();
+            }
         });
 
         // Handle Search Input
