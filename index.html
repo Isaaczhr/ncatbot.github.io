@@ -214,6 +214,20 @@
         .pagination button.active {
             background-color: #45a049;
         }
+
+        /* 统一搜索框和排序框的高度 */
+        .custom-dropdown-button, #searchInput {
+            height: 40px;
+            padding: 8px 12px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        /* 移除搜索框的内联样式 */
+        #searchInput {
+            width: 300px;
+            /* padding:8px; */ /* 移除此行 */
+        }
     </style>
 </head>
 
@@ -239,7 +253,7 @@
         </div>
         
         <div id="searchContainer" style="display:inline-block;">
-            <input type="text" id="searchInput" placeholder="搜索插件..." style="width:300px; padding:8px;">
+            <input type="text" id="searchInput" placeholder="搜索插件...">
         </div>
     </div>
 
