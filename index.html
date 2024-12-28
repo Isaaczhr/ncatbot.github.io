@@ -17,7 +17,7 @@
         header {
             background-color: #4CAF50;
             color: white;
-            text-align: left; /* 修改为左对齐 */
+            text-align: center; /* 修改为居中对齐 */
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
@@ -64,9 +64,10 @@
         }
 
         .plugin-content {
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
             text-align: left; /* 确保内容左对齐 */
-            position: relative;
+            padding: 20px;
         }
 
         .plugin-title {
@@ -96,9 +97,8 @@
             cursor: pointer;
             font-size: 1em;
             transition: background-color 0.3s, transform 0.3s;
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
+            margin-top: 10px; /* 添加上边距 */
+            align-self: flex-end; /* 使按钮对齐到容器右侧 */
         }
 
         .download-btn:hover {
