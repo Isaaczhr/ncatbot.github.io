@@ -385,7 +385,8 @@
             }
         }
 
-        document.getElementById('searchInput').addEventListener('input', function(e) {
+        document.getElementById('searchInput').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
             const searchTerm = e.target.value.toLowerCase();
             const pluginCards = document.querySelectorAll('.plugin-card');
             pluginCards.forEach((card) => {
@@ -399,7 +400,8 @@
                 }
             });
             displayPlugins(currentPage);
-        });
+        }
+    });
 
         document.getElementById('searchIcon').addEventListener('click', function() {
             document.getElementById('searchContainer').classList.toggle('show');
