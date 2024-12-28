@@ -240,10 +240,6 @@
     </header>
 
     <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
-        <button id="searchIcon" style="font-size:18px; border:none; background:none; cursor:pointer; margin-right:10px;">
-            🔍搜索
-        </button>
-        
         <div class="custom-dropdown" id="sortDropdown" style="margin-right:10px;">
             <button class="custom-dropdown-button">默认排序</button>
             <div class="custom-dropdown-content">
@@ -251,6 +247,10 @@
                 <div data-sort="alphabetical">按英文音序</div>
             </div>
         </div>
+        
+        <button id="searchIcon" style="font-size:18px; border:none; background:none; cursor:pointer; margin-right:10px;">
+            🔍搜索
+        </button>
         
         <div id="searchContainer" style="display:inline-block;">
             <input type="text" id="searchInput" placeholder="搜索插件...">
