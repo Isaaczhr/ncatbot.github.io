@@ -17,7 +17,7 @@
         header {
             background-color: #4CAF50;
             color: white;
-            text-align: center;
+            text-align: left; /* 修改为左对齐 */
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
@@ -49,6 +49,7 @@
             margin: 20px;
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
         }
 
         .plugin-card:hover {
@@ -84,10 +85,13 @@
             color: white;
             border: none;
             padding: 12px 25px;
-            border-radius: 25px;
+            border-radius: 4px;
             cursor: pointer;
             font-size: 1em;
             transition: background-color 0.3s, transform 0.3s;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
         }
 
         .download-btn:hover {
