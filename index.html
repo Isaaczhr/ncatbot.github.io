@@ -107,7 +107,8 @@
         }
 
         #searchContainer {
-            display: none;
+            display: flex;
+            align-items: center;
             opacity: 0;
             transition: opacity 0.5s ease;
         }
@@ -116,6 +117,64 @@
             display: block;
             opacity: 1;
         }
+
+        #searchContainer input {
+            width: 300px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Custom Dropdown Styles */
+        .custom-dropdown {
+            position: relative;
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .custom-dropdown-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 160px;
+            text-align: left;
+        }
+
+        .custom-dropdown-button::after {
+            content: '▼';
+            float: right;
+            margin-left: 10px;
+        }
+
+        .custom-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            border: 1px solid #4CAF50;
+            border-radius: 4px;
+            z-index: 1;
+        }
+
+        .custom-dropdown-content div {
+            color: black;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        .custom-dropdown-content div:hover {
+            background-color: #f1f1f1;
+        }
+
+        .custom-dropdown.show .custom-dropdown-content {
+            display: block;
+        }
     </style>
 </head>
 
@@ -123,15 +182,24 @@
     <header>
         <h1>NcatBot插件商店</h1>
         <nav>
-            <a href="about.html">关于NcatBot</a><a href="https://docs.ncatbot.xyz">NcatBot文档</a>
+            <a href="about.html">关于NcatBot</a><a href="https://docs.ncatbot.xyz">NcatBot文档</a><a href="https://github.com/Isaaczhr/NcatBotPlugins">提交你的插件</a>
         </nav>
     </header>
 
-    <div style="text-align:center; margin-top:20px;">
-        <button id="searchIcon" style="font-size:18px; border:none; background:none; cursor:pointer;">
+    <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+        <button id="searchIcon" style="font-size:18px; border:none; background:none; cursor:pointer; margin-right:10px;">
             🔍搜索
         </button>
-        <div id="searchContainer">
+        
+        <div class="custom-dropdown" id="sortDropdown" style="margin-right:10px;">
+            <button class="custom-dropdown-button">默认排序</button>
+            <div class="custom-dropdown-content">
+                <div data-sort="default">默认排序</div>
+                <div data-sort="alphabetical">按英文音序</div>
+            </div>
+        </div>
+        
+        <div id="searchContainer" style="display:inline-block;">
             <input type="text" id="searchInput" placeholder="搜索插件..." style="width:300px; padding:8px;">
         </div>
     </div>
@@ -155,6 +223,64 @@
         </div>
     </div>
     <script>
+        // Toggle Dropdown
+        document.getElementById("sortDropdown").addEventListener("click", function(event) {
+            this.classList.toggle("show");
+        });
+
+        // Close dropdown if clicked outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.custom-dropdown-button')) {
+                var dropdowns = document.getElementsByClassName("custom-dropdown");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        // Handle Sort Selection
+        var sortButtons = document.querySelectorAll(".custom-dropdown-content div");
+        sortButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                var selectedSort = this.getAttribute("data-sort");
+                document.querySelector(".custom-dropdown-button").textContent = this.textContent;
+                sortPlugins(selectedSort);
+            });
+        });
+
+        var pluginContainer = document.getElementById("plugin-container");
+        var originalOrder = [];
+
+        window.addEventListener('DOMContentLoaded', function () {
+            // 将 .plugin-item 改为 .plugin-card
+            var items = pluginContainer.querySelectorAll(".plugin-card");
+            items.forEach(function (item) {
+                originalOrder.push(item);
+            });
+        });
+
+        function sortPlugins(sortOption) {
+            sortOption = sortOption || "default";
+            // 同样将 .plugin-item 改为 .plugin-card
+            var items = Array.from(pluginContainer.querySelectorAll(".plugin-card"));
+            if (sortOption === "alphabetical") {
+                items.sort(function (a, b) {
+                    var aTitle = a.querySelector(".plugin-title").innerText;
+                    var bTitle = b.querySelector(".plugin-title").innerText;
+                    return aTitle.localeCompare(bTitle);
+                });
+            } else {
+                items = originalOrder;
+            }
+            pluginContainer.innerHTML = "";
+            items.forEach(function (item) {
+                pluginContainer.appendChild(item);
+            });
+        }
+
         document.querySelector('.download-btn[data-plugin="XunfeiGPT"]').addEventListener('click', function() {
             window.open('https://isaacz.lanzoul.com/iPfoI2j4h2za', '_blank');
         });
