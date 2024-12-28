@@ -105,6 +105,17 @@
                 width: 80%;
             }
         }
+
+        #searchContainer {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        #searchContainer.show {
+            display: block;
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -112,23 +123,63 @@
     <header>
         <h1>NcatBot插件商店</h1>
         <nav>
-            <a href="about.html">关于NcatBot</a>
+            <a href="about.html">关于NcatBot</a><a href="https://docs.ncatbot.xyz">NcatBot文档</a>
         </nav>
     </header>
+
+    <div style="text-align:center; margin-top:20px;">
+        <button id="searchIcon" style="font-size:18px; border:none; background:none; cursor:pointer;">
+            🔍搜索
+        </button>
+        <div id="searchContainer">
+            <input type="text" id="searchInput" placeholder="搜索插件..." style="width:300px; padding:8px;">
+        </div>
+    </div>
+
     <div id="plugin-container">
         <div class="plugin-card">
             <div class="plugin-content">
                 <h2 class="plugin-title">XunfeiGPT</h2>
+                <p class="plugin-chinese-title">讯飞GPT</p>
                 <p class="plugin-desc">这是NcatBot的默认插件，由管理者进行更新，可以调用讯飞AI进行大模型对话</p>
                 <button class="download-btn" data-plugin="XunfeiGPT">下载</button>
             </div>
         </div>
+        <div class="plugin-card">
+            <div class="plugin-content">
+                <h2 class="plugin-title">OnTime</h2>
+                <p class="plugin-chinese-title">定时任务</p>
+                <p class="plugin-desc">定时任务插件，能够创建自己想要的定时任务</p>
+                <button class="download-btn" data-plugin="OnTime">下载</button>
+            </div>
+        </div>
     </div>
     <script>
-        document.querySelectorAll('.download-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                window.open('https://isaacz.lanzoul.com/iPfoI2j4h2za', '_blank');
+        document.querySelector('.download-btn[data-plugin="XunfeiGPT"]').addEventListener('click', function() {
+            window.open('https://isaacz.lanzoul.com/iPfoI2j4h2za', '_blank');
+        });
+
+        document.querySelector('.download-btn[data-plugin="OnTime"]').addEventListener('click', function() {
+            window.open('https://isaacz.lanzoul.com/iGuf02j8b2ng', '_blank');
+        });
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const pluginCards = document.querySelectorAll('.plugin-card');
+            pluginCards.forEach((card) => {
+                const englishName = card.querySelector('.plugin-title').textContent.toLowerCase();
+                const chineseName = card.querySelector('.plugin-chinese-title').textContent.toLowerCase();
+                const desc = card.querySelector('.plugin-desc').textContent.toLowerCase();
+                if (englishName.includes(searchTerm) || chineseName.includes(searchTerm) || desc.includes(searchTerm)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
             });
+        });
+
+        document.getElementById('searchIcon').addEventListener('click', function() {
+            document.getElementById('searchContainer').classList.toggle('show');
         });
     </script>
 </body>
