@@ -295,6 +295,7 @@
 
         var pluginContainer = document.getElementById("plugin-container");
         var originalOrder = [];
+        var filteredPlugins = [];
 
         window.addEventListener('DOMContentLoaded', function () {
             fetch('plugins.json')
@@ -331,6 +332,7 @@
 
                     // 保存原始顺序
                     originalOrder = Array.from(pluginContainer.querySelectorAll(".plugin-card"));
+                    filteredPlugins = originalOrder.slice();
 
                     // 初始化分页
                     displayPlugins(currentPage);
@@ -362,10 +364,14 @@
         let totalPages = 1;
 
         function displayPlugins(page) {
-            const pluginCards = Array.from(document.querySelectorAll('.plugin-card'));
+            const pluginCards = filteredPlugins;
             totalPages = Math.ceil(pluginCards.length / itemsPerPage);
-            pluginCards.forEach((card, index) => {
-                card.style.display = (index >= (page - 1) * itemsPerPage && index < page * itemsPerPage) ? 'block' : 'none';
+            pluginContainer.innerHTML = '';
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            pluginCards.slice(start, end).forEach(card => {
+                pluginContainer.appendChild(card);
+                card.style.display = 'block';
             });
             updatePagination();
         }
@@ -385,23 +391,17 @@
             }
         }
 
-        document.getElementById('searchInput').addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
+        document.getElementById('searchInput').addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
-            const pluginCards = document.querySelectorAll('.plugin-card');
-            pluginCards.forEach((card) => {
+            filteredPlugins = originalOrder.filter(card => {
                 const englishName = card.querySelector('.plugin-title').textContent.toLowerCase();
                 const chineseName = card.querySelector('.plugin-chinese-title').textContent.toLowerCase();
                 const desc = card.querySelector('.plugin-desc').textContent.toLowerCase();
-                if (englishName.includes(searchTerm) || chineseName.includes(searchTerm) || desc.includes(searchTerm)) {
-                    card.style.display = '';
-                } else {
-                    card.style.display = 'none';
-                }
+                return englishName.includes(searchTerm) || chineseName.includes(searchTerm) || desc.includes(searchTerm);
             });
+            currentPage = 1;
             displayPlugins(currentPage);
-        }
-    });
+        });
 
         document.getElementById('searchIcon').addEventListener('click', function() {
             document.getElementById('searchContainer').classList.toggle('show');
