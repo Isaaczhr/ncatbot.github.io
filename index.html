@@ -179,6 +179,27 @@
         .custom-dropdown.show .custom-dropdown-content {
             display: block;
         }
+
+        /* 添加分页容器样式 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .pagination button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .pagination button.active {
+            background-color: #45a049;
+        }
     </style>
 </head>
 
@@ -211,6 +232,9 @@
     <div id="plugin-container">
         <!-- 插件卡片将通过JavaScript动态生成 -->
     </div>
+
+    <!-- 添加分页容器 -->
+    <div class="pagination"></div>
 
     <script>
         // Toggle Dropdown
@@ -277,6 +301,9 @@
 
                     // 保存原始顺序
                     originalOrder = Array.from(pluginContainer.querySelectorAll(".plugin-card"));
+
+                    // 初始化分页
+                    displayPlugins(currentPage);
                 })
                 .catch(error => console.error('Error fetching plugins:', error));
         });
@@ -297,6 +324,35 @@
             items.forEach(function (item) {
                 pluginContainer.appendChild(item);
             });
+            displayPlugins(currentPage);
+        }
+
+        const itemsPerPage = 20;
+        let currentPage = 1;
+        let totalPages = 1;
+
+        function displayPlugins(page) {
+            const pluginCards = Array.from(document.querySelectorAll('.plugin-card'));
+            totalPages = Math.ceil(pluginCards.length / itemsPerPage);
+            pluginCards.forEach((card, index) => {
+                card.style.display = (index >= (page - 1) * itemsPerPage && index < page * itemsPerPage) ? 'block' : 'none';
+            });
+            updatePagination();
+        }
+
+        function updatePagination() {
+            const paginationContainer = document.querySelector('.pagination');
+            paginationContainer.innerHTML = '';
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement('button');
+                button.textContent = i;
+                if (i === currentPage) button.classList.add('active');
+                button.addEventListener('click', () => {
+                    currentPage = i;
+                    displayPlugins(currentPage);
+                });
+                paginationContainer.appendChild(button);
+            }
         }
 
         document.getElementById('searchInput').addEventListener('input', function(e) {
@@ -312,6 +368,7 @@
                     card.style.display = 'none';
                 }
             });
+            displayPlugins(currentPage);
         });
 
         document.getElementById('searchIcon').addEventListener('click', function() {
