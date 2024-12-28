@@ -131,7 +131,7 @@
             align-items: center;
             margin-top: 20px;
             gap: 10px; /* 元素之间的统一间距 */
-            transition: all 0.5s ease-out; /* Fast first, then slow */
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Non-linear animation: ease-out */
         }
 
         /* Custom Dropdown Styles */
@@ -139,7 +139,7 @@
             position: relative;
             display: inline-block;
             font-size: 16px;
-            transition: all 0.3s ease; /* Smooth transition */
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Non-linear animation: ease-out */
         }
 
         .custom-dropdown-button {
@@ -155,7 +155,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            transition: all 0.3s ease; /* Smooth transition */
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Non-linear animation: ease-out */
         }
 
         .custom-dropdown-button::after {
@@ -172,7 +172,7 @@
             border: 1px solid #4CAF50;
             border-radius: 4px;
             z-index: 1;
-            transition: all 0.3s ease; /* Smooth transition */
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Non-linear animation: ease-out */
         }
 
         .custom-dropdown-content div {
@@ -196,7 +196,7 @@
             border: none;
             background: none;
             cursor: pointer;
-            transition: all 0.3s ease; /* Smooth transition */
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Non-linear animation: ease-out */
         }
 
         /* Search Container Styles */
@@ -204,7 +204,7 @@
             opacity: 0;
             max-width: 0;
             overflow: hidden;
-            transition: opacity 0.5s ease-out, max-width 0.5s ease-out; /* Smooth transition */
+            transition: opacity 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), max-width 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex;
         }
 
@@ -221,7 +221,7 @@
             height: 40px;
             box-sizing: border-box;
             font-size: 16px;
-            transition: all 0.5s ease-out; /* Smooth transition */
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Non-linear animation: ease-out */
         }
 
         /* Pagination Styles */
@@ -229,7 +229,7 @@
             display: flex;
             justify-content: center;
             margin: 20px 0;
-            transition: all 0.5s ease-out; /* Smooth transition */
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Non-linear animation: ease-out */
         }
 
         .pagination button {
@@ -371,7 +371,10 @@
                     return aTitle.localeCompare(bTitle);
                 });
             } else { // default sort
-                filteredPlugins = originalOrder.slice();
+                // 按照 originalOrder 的顺序排序 filteredPlugins
+                filteredPlugins.sort(function(a, b) {
+                    return originalOrder.indexOf(a) - originalOrder.indexOf(b);
+                });
             }
             currentPage = 1;
             displayPlugins(currentPage);
