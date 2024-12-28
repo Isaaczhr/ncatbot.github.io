@@ -1,0 +1,14 @@
+[
+    {
+        "title": "XunfeiGPT",
+        "chineseTitle": "讯飞GPT",
+        "description": "这是NcatBot的默认插件，由管理者进行更新，可以调用讯飞AI进行大模型对话",
+        "downloadLink": "https://github.com/Isaaczhr/NcatBotPlugins/download/XunfeiGPT"
+    },
+    {
+        "title": "ExamplePlugin",
+        "chineseTitle": "示例插件",
+        "description": "这是一个示例插件，用于展示如何添加新插件到商店。",
+        "downloadLink": "https://github.com/Isaaczhr/NcatBotPlugins/download/ExamplePlugin"
+    }
+]
