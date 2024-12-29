@@ -10,5 +10,11 @@
         "chineseTitle": "定时任务",
         "description": "用于创建自定义的定时任务",
         "downloadLink": "https://isaacz.lanzoul.com/iGuf02j8b2ng"
+    },
+    {
+        "title": "Rules",
+        "chineseTitle": "文本规则",
+        "description": "告别难看的if-elif-else，换上高大上的规则注册吧~",
+        "downloadLink": "https://isaacz.lanzoul.com/i8ysZ2jbxbzc"
     }
 ]
