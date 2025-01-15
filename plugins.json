@@ -1,9 +1,9 @@
 [
     {
-        "title": "XunfeiGPT",
+        "title": "XunFeiGPT",
         "chineseTitle": "讯飞GPT",
         "description": "这是NcatBot的默认插件，由管理者进行更新，可以调用讯飞AI进行大模型对话",
-        "downloadLink": "plugins/XunfeiGPT.zip"
+        "downloadLink": "plugins/XunFeiGPT.zip"
     },
     {
         "title": "OnTime",
