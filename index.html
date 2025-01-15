@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh">
 
-<head>
-    <meta name="baidu-site-verification" content="codeva-gBaQftDpAh" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NcatBot插件商店</title>
-    <style>
+    <head>
+        <meta name="baidu-site-verification" content="codeva-gBaQftDpAh" />
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NcatBot插件商店</title>
+        <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -15,9 +15,9 @@
         }
 
         header {
-            background-color: #4CAF50;
+            background-color: #54c256;
             color: white;
-            text-align: center; /* 修改为居中对齐 */
+            text-align: center;
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
@@ -251,45 +251,124 @@
         .pagination button.active {
             background-color: #45a049;
         }
+
+        #title {
+            background: rgb(20, 20, 20);
+            text-align: center;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .svg-wrapper {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            margin: 0 auto;
+            width: 320px;
+        }
+
+        .shape {
+            stroke-dasharray: 140 540;
+            stroke-dashoffset: -474;
+            stroke-width: 12px;
+            fill: transparent;
+            stroke: #1daf66;
+            border-bottom: 8px solid black;
+            transition: stroke-width 1s, stroke-dashoffset 1s, stroke-dasharray 1s;
+            transform-origin: center;
+            animation: scaleUp 1s ease-out forwards;
+        }
+
+        @keyframes scaleUp {
+            from {
+            transform: scale(0);
+            }
+            to {
+            transform: scale(1);
+            }
+        }
+
+        .text {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 32px;
+            letter-spacing: 4px;
+            color: #fff;
+            top: -48px;
+            position: relative;
+            pointer-events: none;
+        }
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .text {
+            animation: draw 1.5s ease-in-out forwards;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .shape:hover {
+            stroke-width: 6px;
+            stroke-dashoffset: 0;
+            stroke-dasharray: 760;
+        }
     </style>
-</head>
+    </head>
 
-<body>
-    <header>
-        <h1>NcatBot插件商店</h1>
-        <nav>
-            <a href="about.html">关于NcatBot</a>
-            <a href="https://docs.ncatbot.xyz">NcatBot文档</a>
-            <a href="https://github.com/Isaaczhr/NcatBotPlugins">提交你的插件</a>
-        </nav>
-    </header>
+    <body>
+        <header>
+            <div id="title" class="svg-wrapper" style="margin-top: 20px;"></div>
+                <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="shape" height="60" width="320" />
+                </svg>
+                <div class="text" >NcatBot插件商店</div>
+            </div>
+            <nav>
+                <a href="about.html">关于NcatBot</a>
+                <a href="https://docs.ncatbot.xyz">NcatBot文档</a>
+                <a href="https://github.com/Isaaczhr/NcatBotPlugins">提交你的插件</a>
+            </nav>
+        </header>
 
-    <div class="controls-container">
-        <div class="custom-dropdown" id="sortDropdown">
-            <button class="custom-dropdown-button">默认排序</button>
-            <div class="custom-dropdown-content">
-                <div data-sort="default">默认排序</div>
-                <div data-sort="alphabetical">按英文音序</div>
+        <div class="controls-container">
+            <div class="custom-dropdown" id="sortDropdown">
+                <button class="custom-dropdown-button">默认排序</button>
+                <div class="custom-dropdown-content">
+                    <div data-sort="default">默认排序</div>
+                    <div data-sort="alphabetical">按英文音序</div>
+                </div>
+            </div>
+
+            <button id="searchIcon">
+                🔍搜索
+            </button>
+
+            <div id="searchContainer">
+                <input type="text" id="searchInput" placeholder="搜索插件...">
             </div>
         </div>
-        
-        <button id="searchIcon">
-            🔍搜索
-        </button>
-        
-        <div id="searchContainer">
-            <input type="text" id="searchInput" placeholder="搜索插件...">
+
+        <div id="plugin-container">
+            <!-- 插件卡片将通过JavaScript动态生成 -->
         </div>
-    </div>
 
-    <div id="plugin-container">
-        <!-- 插件卡片将通过JavaScript动态生成 -->
-    </div>
+        <!-- 添加分页容器 -->
+        <div class="pagination"></div>
 
-    <!-- 添加分页容器 -->
-    <div class="pagination"></div>
-
-    <script>
+        <script>
         // Toggle Dropdown
         document.getElementById("sortDropdown").addEventListener("click", function(event) {
             this.classList.toggle("show");
@@ -444,6 +523,6 @@
             displayPlugins(currentPage);
         });
     </script>
-</body>
+    </body>
 
 </html>
