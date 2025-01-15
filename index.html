@@ -66,30 +66,30 @@
         .plugin-content {
             display: flex;
             flex-direction: column;
-            text-align: left; /* 确保内容左对齐 */
+            text-align: left;
             padding: 20px;
         }
 
         .plugin-titles {
-            display: flex;
-            align-items: baseline;
-            gap: 10px; /* 标题之间的间距 */
+            margin-bottom: 10px;
         }
 
         .plugin-title {
-            font-size: 1.5em; /* 保持现有字体大小 */
+            font-size: 1.5em;
             margin: 0;
+            display: block;
         }
 
         .plugin-chinese-title {
-            font-size: 1.5em; /* 保持现有字体大小 */
+            font-size: 1.5em;
             margin: 0;
-            color: #555; /* 可选：调整中文标题颜色 */
+            color: #555;
+            display: block;
         }
 
         .plugin-desc {
             display: block;
-            min-height: 4.5em; /* 假设行高为1.5em，三行高度 */
+            min-height: 4.5em;
             line-height: 1.5em;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -104,8 +104,8 @@
             cursor: pointer;
             font-size: 1em;
             transition: background-color 0.3s, transform 0.3s;
-            margin-top: 10px; /* 添加上边距 */
-            align-self: flex-end; /* 使按钮对齐到容器右侧 */
+            margin-top: 10px;
+            align-self: flex-end;
         }
 
         .download-btn:hover {
