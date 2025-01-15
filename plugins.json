@@ -3,18 +3,24 @@
         "title": "XunfeiGPT",
         "chineseTitle": "讯飞GPT",
         "description": "这是NcatBot的默认插件，由管理者进行更新，可以调用讯飞AI进行大模型对话",
-        "downloadLink": "https://isaacz.lanzoul.com/iPfoI2j4h2za"
+        "downloadLink": "plugins/XunfeiGPT.zip"
     },
     {
         "title": "OnTime",
         "chineseTitle": "定时任务",
         "description": "用于创建自定义的定时任务",
-        "downloadLink": "https://isaacz.lanzoul.com/iGuf02j8b2ng"
+        "downloadLink": "plugins/OnTime.zip"
     },
     {
         "title": "Rules",
         "chineseTitle": "文本规则",
         "description": "告别难看的if-elif-else，换上高大上的规则注册吧~",
-        "downloadLink": "https://isaacz.lanzoul.com/i8ysZ2jbxbzc"
+        "downloadLink": "plugins/Rules.zip"
+    },
+    {
+        "title": "SendQQMusic",
+        "chineseTitle": "QQ音乐卡片",
+        "description": "这是一个可以发送QQ分享音乐的插件，你可以直接使用main.py的代码了解这个插件",
+        "downloadLink": "plugins/SendQQMusic.zip"
     }
 ]
