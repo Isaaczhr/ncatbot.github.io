@@ -2,6 +2,7 @@ import os
 import subprocess
 import sys
 import importlib.util
+import time
 from NcatBot.ncatbot.client import BotClient
 
 bot = BotClient()
@@ -50,5 +51,17 @@ if __name__ == "__main__":
     # 加载插件并传递 bot 实例
     load_plugins('./plugins', bot)
     
-    # 运行 bot
-    bot.run(reload=True)
+    # 尝试运行 bot，最多重试 10 次
+    max_retries = 10
+    for attempt in range(max_retries):
+        try:
+            bot.run(reload=True)
+            break
+        except Exception as e:
+            print(f"连接失败: {e}")
+            if attempt < max_retries - 1:
+                print("等待 3 秒后重试...")
+                time.sleep(3)
+            else:
+                print("多次尝试连接失败，程序退出")
+                sys.exit(1)
