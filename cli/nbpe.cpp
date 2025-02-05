@@ -11,7 +11,7 @@ const std::string NCURL = "https://ghproxy.net/https://github.com/liyihao1110/nc
 const std::string ZIP_FILE = "main.zip";
 const std::string MAIN_DIR = "./NcatBotPluginsEdition";
 const std::string DEST_DIR = "./NcatBotPluginsEdition/NcatBot";
-const std::string PLUGIN_DIR = "./NcatBotPluginsEdition/NcatBot/plugins";
+const std::string PLUGIN_DIR = "./NcatBotPluginsEdition/plugins";
 
 // 打印帮助信息
 void print_help() {
