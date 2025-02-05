@@ -1,1 +1,0 @@
-curl https://plugins.ncatbot.xyz/install.sh -o install.sh && sudo bash install.sh
