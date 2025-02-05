@@ -8,8 +8,15 @@ install_nbpe() {
     if curl -L -o "$dest" "$url"; then
         # Make it executable
         chmod +x "$dest"
-        echo "NcatBot Plugins Edition CLI installed successfully."
-        echo "Use 'nbpe help' for usage."
+        
+        # Check if the installation was successful
+        if [[ -x "$dest" ]]; then
+            echo "NcatBot Plugins Edition CLI installed successfully."
+            echo "Use 'nbpe help' for usage."
+        else
+            echo "Failed to set executable permissions for $dest"
+            exit 1
+        fi
     else
         echo "Failed to download nbpe from $url"
         exit 1
