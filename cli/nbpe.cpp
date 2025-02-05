@@ -9,6 +9,7 @@ const std::string GREEN = "\033[0;32m";
 const std::string NC = "\033[0m";
 const std::string NCURL = "https://ghproxy.net/https://github.com/liyihao1110/ncatbot/archive/refs/heads/main.zip";
 const std::string ZIP_FILE = "main.zip";
+const std::string MAIN_DIR = "./NcatBotPluginsEdition";
 const std::string DEST_DIR = "./NcatBotPluginsEdition/NcatBot";
 const std::string PLUGIN_DIR = "./NcatBotPluginsEdition/NcatBot/plugins";
 
@@ -62,7 +63,7 @@ void install_ncatbot() {
 
     //下载main.py
     std::string main_url = "https://plugins.ncatbot.xyz/downloads/main.py";
-    execute_command("curl -L -o " + DEST_DIR + "/main.py " + main_url);
+    execute_command("curl -L -o " + MAIN_DIR + "/main.py " + main_url);
 
     // 安装完成信息
     print_colored_message("主程序代码下载完成。", RED);
