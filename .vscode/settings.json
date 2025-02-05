@@ -1,5 +1,9 @@
 {
     "files.associations": {
-        "cstring": "cpp"
-    }
+        "cstring": "cpp",
+        "string": "cpp"
+    },
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/**",
+    ]
 }
