@@ -17,6 +17,7 @@ void print_help() {
     std::cout << "Usage: nbpe <command> [arguments]\n";
     std::cout << "Commands:\n";
     std::cout << "  get       install/update NcatBot Plugins Edition\n";
+    std::cout << "  install   install/update a plugin\n";
 }
 
 // 执行系统命令并检查错误
@@ -57,7 +58,7 @@ void install_ncatbot() {
     print_colored_message("下载完成。", RED);
 
     // 安装主程序代码
-    print_colored_message("正在安下载主程序代码...", RED);
+    print_colored_message("正在下载主程序代码...", RED);
 
     //下载main.py
     std::string main_url = "https://plugins.ncatbot.xyz/downloads/main.py";
