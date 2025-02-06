@@ -18,7 +18,10 @@ void print_help() {
     std::cout << "Usage: nbpe <command> [arguments]\n";
     std::cout << "Commands:\n";
     std::cout << "  get       install/update NcatBot Plugins Edition\n";
+    std::cout << "  init      init enviroment\n";
     std::cout << "  install   install/update a plugin\n";
+    std::cout << "  run       run the main program\n";
+    std::cout << "  uninstall uninstall a plugin\n";
 }
 
 // 执行系统命令并检查错误
@@ -121,9 +124,38 @@ void install_plugin(const std::string& plugin_name) {
     print_colored_message("插件 " + plugin_name + " 安装完成。", RED);
 }
 
+void uninstall_plugin(const std::string& plugin_name) {
+    // 检查本地是否有插件，存在则删除
+    std::string plugin_file = PLUGIN_DIR + "/" + plugin_name + "/main.py";
+    std::ifstream plugin_file_stream(plugin_file);
+    if (!plugin_file_stream) {
+        print_colored_message("插件 " + plugin_name + " 不存在。", RED);
+        exit(EXIT_FAILURE);
+    }
+
+    // 提示用户确认删除
+    std::cout << "确定要删除插件 " << plugin_name << " 吗？(y/n): ";
+    char confirm;
+    std::cin >> confirm;
+    if (confirm != 'y' && confirm != 'Y') {
+        print_colored_message("取消卸载插件 " + plugin_name + "。", RED);
+        return;
+    }
+
+    // 删除插件
+    execute_command("rm -rf " + PLUGIN_DIR + "/" + plugin_name);
+
+    // 卸载完成信息
+    print_colored_message("插件 " + plugin_name + " 卸载完成。", RED);
+}
+
 void run_main() {
     // 执行主程序，并实时显示输出
     execute_command("python3 " + MAIN_DIR + "/main.py");
+}
+
+void init_enviroment() {
+    execute_command("python3 -m pip install" + DEST_DIR + "/requirements.txt");
 }
 // 主函数
 int main(int argc, char* argv[]) {
@@ -135,6 +167,8 @@ int main(int argc, char* argv[]) {
     std::string command = argv[1];
     if (command == "get") {
         install_ncatbot();
+    } else if (command == "init") {
+        init_enviroment();
     } else if (command == "install") {
         if (argc < 3) {
             std::cerr << "Usage: nbpe install <plugin_name>\n";
@@ -144,6 +178,13 @@ int main(int argc, char* argv[]) {
         install_plugin(plugin_name);
     } else if (command == "run") {
         run_main();
+    } else if (command == "uninstall") {
+        if (argc < 3) {
+            std::cerr << "Usage: nbpe uninstall <plugin_name>\n";
+            return 1;
+        }
+        std::string plugin_name = argv[2];
+        uninstall_plugin(plugin_name);
     } else {
         print_help();
         return 1;
