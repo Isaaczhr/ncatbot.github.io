@@ -121,6 +121,10 @@ void install_plugin(const std::string& plugin_name) {
     print_colored_message("插件 " + plugin_name + " 安装完成。", RED);
 }
 
+void run_main() {
+    // 执行主程序，并实时显示输出
+    execute_command("python3 " + MAIN_DIR + "/main.py");
+}
 // 主函数
 int main(int argc, char* argv[]) {
     if (argc < 2) {
@@ -138,6 +142,8 @@ int main(int argc, char* argv[]) {
         }
         std::string plugin_name = argv[2];
         install_plugin(plugin_name);
+    } else if (command == "run") {
+        run_main();
     } else {
         print_help();
         return 1;

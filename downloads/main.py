@@ -4,8 +4,10 @@ import sys
 import importlib.util
 import time
 from NcatBot.ncatbot.client import BotClient
+from NcatBot.ncatbot.logger import get_log
 
 bot = BotClient()
+_log = get_log()
 
 def install_requirements(requirements_file):
     """安装 requirements.txt 中列出的依赖"""
@@ -31,16 +33,19 @@ def load_plugins(plugin_folder, bot_instance):
 
         plugin_file = os.path.join(plugin_folder, plugin_dir, f"{plugin_dir}.py")
         if os.path.exists(plugin_file):
-            print(f"加载 {plugin_dir} 插件")
-            module_name = plugin_dir
-            spec = importlib.util.spec_from_file_location(module_name, plugin_file)
-            plugin = importlib.util.module_from_spec(spec)
-            sys.modules[module_name] = plugin
-            spec.loader.exec_module(plugin)
+            try:
+                _log.info(f"加载插件 {plugin_dir}")
+                module_name = plugin_dir
+                spec = importlib.util.spec_from_file_location(module_name, plugin_file)
+                plugin = importlib.util.module_from_spec(spec)
+                sys.modules[module_name] = plugin
+                spec.loader.exec_module(plugin)
 
-            # 初始化
-            if hasattr(plugin, 'init_plugin'):
-                plugin.init_plugin(bot_instance)
+                # 初始化
+                if hasattr(plugin, 'init_plugin'):
+                    plugin.init_plugin(bot_instance)
+            except Exception as e:
+                _log.error(f"加载插件 {plugin_dir} 失败: {e}")
         else:
             print(f"Plugin file {plugin_file} does not exist!")
 
