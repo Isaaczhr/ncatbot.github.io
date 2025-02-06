@@ -64,11 +64,12 @@ void install_ncatbot() {
     // 安装主程序代码
     print_colored_message("正在下载主程序代码...", RED);
 
-    //下载main.py
+    //下载main.py和config.yaml
     std::string main_url = "https://plugins.ncatbot.xyz/downloads/main.py";
+    std::string config_url = "https://plugins.ncatbot.xyz/downloads/config.yaml";
     execute_command("curl -L -o " + MAIN_DIR + "/main.py " + main_url);
+    execute_command("curl -L -o " + MAIN_DIR + "/config.yaml " + config_url);
 
-    execute_command("cp " + DEST_DIR + "/config.yaml " + MAIN_DIR + "/config.yaml");
     // 安装完成信息
     print_colored_message("主程序代码下载完成。", RED);
 }
@@ -151,11 +152,12 @@ void uninstall_plugin(const std::string& plugin_name) {
 
 void run_main() {
     // 执行主程序，并实时显示输出
-    execute_command("python3 " + MAIN_DIR + "/main.py");
+    execute_command(MAIN_DIR + "/.venv/bin/python3 " + MAIN_DIR + "/main.py");
 }
 
 void init_enviroment() {
-    execute_command("python3 -m pip install" + DEST_DIR + "/requirements.txt");
+    execute_command("python3 -m venv " + MAIN_DIR + "/.venv");
+    execute_command(MAIN_DIR + "/.venv/bin/python3 -m pip install -r " + DEST_DIR + "/requirements.txt");
 }
 // 主函数
 int main(int argc, char* argv[]) {
