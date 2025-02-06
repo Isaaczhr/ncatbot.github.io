@@ -15,7 +15,7 @@ const std::string PLUGIN_DIR = "./NcatBotPluginsEdition/plugins";
 
 // 打印帮助信息
 void print_help() {
-    std::cout << "Usage: nbpe <command> [arguments]\n";
+    std::cout << "Usage: nbmiao <command> [arguments]\n";
     std::cout << "Commands:\n";
     std::cout << "  get       install/update NcatBot Plugins Edition\n";
     std::cout << "  init      init enviroment\n";
@@ -41,26 +41,7 @@ void print_colored_message(const std::string& message, const std::string& color)
 void install_ncatbot() {
     // 打印欢迎信息
     print_colored_message("欢迎使用 NcatBot 插件版安装程序", RED);
-    std::cout << "正在下载 NcatBot 核心代码...\n";
-    print_colored_message("使用代理: ghproxy.net", GREEN);
-
-    // 下载 zip 文件
-    print_colored_message("正在下载...", RED);
-    execute_command("curl -L -o " + ZIP_FILE + " " + NCURL);
-
-    // 解压下载的文件
-    print_colored_message("正在解压...", RED);
-    execute_command("unzip -q " + ZIP_FILE + " -d .");
-
-    // 移动文件到目标目录并清理临时文件
-    execute_command("mkdir -p " + DEST_DIR);
-    execute_command("mv ./ncatbot-main/* " + DEST_DIR);
-    execute_command("rm -rf ./ncatbot-main");
-    execute_command("rm " + ZIP_FILE);
-
-    // 安装完成信息
-    print_colored_message("下载完成。", RED);
-
+    
     // 安装主程序代码
     print_colored_message("正在下载主程序代码...", RED);
 
@@ -155,7 +136,7 @@ void run_main() {
 
 void init_enviroment() {
     execute_command("python3 -m venv " + MAIN_DIR + "/.venv");
-    execute_command(MAIN_DIR + "/.venv/bin/python3 -m pip install -r " + DEST_DIR + "/requirements.txt");
+    execute_command(MAIN_DIR + "/.venv/bin/python3 -m pip install git+https://ghproxy.net/https://github.com/liyihao1110/ncatbot.git");
 }
 // 主函数
 int main(int argc, char* argv[]) {
@@ -171,7 +152,7 @@ int main(int argc, char* argv[]) {
         init_enviroment();
     } else if (command == "install") {
         if (argc < 3) {
-            std::cerr << "Usage: nbpe install <plugin_name>\n";
+            std::cerr << "Usage: nbmiao install <plugin_name>\n";
             return 1;
         }
         std::string plugin_name = argv[2];
@@ -180,7 +161,7 @@ int main(int argc, char* argv[]) {
         run_main();
     } else if (command == "uninstall") {
         if (argc < 3) {
-            std::cerr << "Usage: nbpe uninstall <plugin_name>\n";
+            std::cerr << "Usage: nbmiao uninstall <plugin_name>\n";
             return 1;
         }
         std::string plugin_name = argv[2];

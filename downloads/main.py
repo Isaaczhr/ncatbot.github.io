@@ -53,8 +53,6 @@ def load_plugins(plugin_folder, bot_instance):
             print(f"Plugin file {plugin_file} does not exist!")
 
 if __name__ == "__main__":
-    # 安装主程序依赖
-    install_requirements(os.path.join(os.path.dirname(__file__), 'NcatBot', 'requirements.txt'))
     
     # 加载插件并传递 bot 实例
     load_plugins(os.path.join(os.path.dirname(__file__), 'plugins'), bot)
