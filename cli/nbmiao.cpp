@@ -66,9 +66,7 @@ void install_ncatbot() {
 
     //下载main.py和config.yaml
     std::string main_url = "https://plugins.ncatbot.xyz/downloads/main.py";
-    std::string config_url = "https://plugins.ncatbot.xyz/downloads/config.yaml";
     execute_command("curl -L -o " + MAIN_DIR + "/main.py " + main_url);
-    execute_command("curl -L -o " + MAIN_DIR + "/config.yaml " + config_url);
 
     // 安装完成信息
     print_colored_message("主程序代码下载完成。", RED);

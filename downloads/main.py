@@ -23,6 +23,9 @@ def install_requirements(requirements_file):
 def load_plugins(plugin_folder, bot_instance):
     """加载插件并为每个插件安装依赖"""
     # 获取插件
+    if not os.path.exists(plugin_folder):
+        print(f"Plugin folder {plugin_folder} does not exist!")
+        return
     plugin_dirs = [d for d in os.listdir(plugin_folder) if os.path.isdir(os.path.join(plugin_folder, d))]
 
     for plugin_dir in plugin_dirs:
@@ -51,10 +54,10 @@ def load_plugins(plugin_folder, bot_instance):
 
 if __name__ == "__main__":
     # 安装主程序依赖
-    install_requirements('NcatBot/requirements.txt')
+    install_requirements(os.path.join(os.path.dirname(__file__), 'NcatBot', 'requirements.txt'))
     
     # 加载插件并传递 bot 实例
-    load_plugins('./plugins', bot)
+    load_plugins(os.path.join(os.path.dirname(__file__), 'plugins'), bot)
     
     # 尝试运行 bot，最多重试 10 次
     max_retries = 10

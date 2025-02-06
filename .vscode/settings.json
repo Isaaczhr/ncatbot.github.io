@@ -3,7 +3,8 @@
         "cstring": "cpp",
         "string": "cpp",
         "cstdlib": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "iostream": "cpp"
     },
     "C_Cpp.default.includePath": [
         "${workspaceFolder}/**",
