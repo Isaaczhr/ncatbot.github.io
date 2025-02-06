@@ -1,0 +1,26 @@
+(2025-02-06 17:31:51,899) (gateway.py:63) ws_connect 
+ WebSocket 连接错误: [Errno 111] Connect call failed ('127.0.0.1', 3001)
+(2025-02-06 17:31:54,900) (gateway.py:63) ws_connect 
+ WebSocket 连接错误: [Errno 111] Connect call failed ('127.0.0.1', 3001)
+(2025-02-06 17:31:57,900) (gateway.py:63) ws_connect 
+ WebSocket 连接错误: [Errno 111] Connect call failed ('127.0.0.1', 3001)
+(2025-02-06 17:32:00,901) (gateway.py:63) ws_connect 
+ WebSocket 连接错误: [Errno 111] Connect call failed ('127.0.0.1', 3001)
+(2025-02-06 17:32:03,902) (gateway.py:63) ws_connect 
+ WebSocket 连接错误: [Errno 111] Connect call failed ('127.0.0.1', 3001)
+(2025-02-06 17:32:06,902) (gateway.py:63) ws_connect 
+ WebSocket 连接错误: [Errno 111] Connect call failed ('127.0.0.1', 3001)
+(2025-02-06 17:32:09,903) (gateway.py:63) ws_connect 
+ WebSocket 连接错误: [Errno 111] Connect call failed ('127.0.0.1', 3001)
+(2025-02-06 17:32:12,904) (gateway.py:63) ws_connect 
+ WebSocket 连接错误: [Errno 111] Connect call failed ('127.0.0.1', 3001)
+(2025-02-06 17:32:15,904) (gateway.py:63) ws_connect 
+ WebSocket 连接错误: [Errno 111] Connect call failed ('127.0.0.1', 3001)
+(2025-02-06 17:32:18,905) (gateway.py:63) ws_connect 
+ WebSocket 连接错误: [Errno 111] Connect call failed ('127.0.0.1', 3001)
+(2025-02-06 17:46:21,823) (gateway.py:63) ws_connect 
+ WebSocket 连接错误: [Errno 111] Connect call failed ('127.0.0.1', 3001)
+(2025-02-06 17:46:24,823) (gateway.py:63) ws_connect 
+ WebSocket 连接错误: [Errno 111] Connect call failed ('127.0.0.1', 3001)
+(2025-02-06 17:46:32,280) (gateway.py:63) ws_connect 
+ WebSocket 连接错误: [Errno 111] Connect call failed ('127.0.0.1', 3001)

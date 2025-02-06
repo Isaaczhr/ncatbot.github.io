@@ -3,10 +3,13 @@ import subprocess
 import sys
 import importlib.util
 import time
-from NcatBot.ncatbot.client import BotClient
-from NcatBot.ncatbot.logger import get_log
+from ncatbot.client import BotClient
+from ncatbot.logger import get_log
 
-bot = BotClient()
+base_dir = os.path.dirname(os.path.abspath(__file__))
+config_file = os.path.join(base_dir, 'config.yaml')
+
+bot = BotClient(config_path=config_file)
 _log = get_log()
 
 def install_requirements(requirements_file):

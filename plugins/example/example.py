@@ -1,4 +1,4 @@
-from NcatBot.ncatbot.message import GroupMessage, PrivateMessage
+from ncatbot.message import GroupMessage, PrivateMessage
 import logging
 
 _log = logging.getLogger(__name__)
