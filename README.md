@@ -6,6 +6,8 @@
 
 NcatBot 插件版是以 [NcatBot](https://github.com/liyihao1110/NcatBot) 为核心的、面向用户的 QQ Bot 启动器。
 
+你需要的环境: Python 3.10 及以上、安装并开启的 NapCatQQ
+
 ## 安装
 
 请按照以下步骤安装:
