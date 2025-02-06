@@ -14,7 +14,7 @@ NcatBot 插件版是以 [NcatBot](https://github.com/liyihao1110/NcatBot) 为核
 
 1. 下载命令行工具: nbmiao
 
-   1. Debian/Ubuntu: 下载 [nbmiao](https://github.com/Isaaczhr/plugins.ncatbot.xyz/blob/main/cli/nbmiao) 。
+   1. Debian/Ubuntu: 下载 [nbmiao](https://github.com/Isaaczhr/plugins.ncatbot.xyz/blob/main/cli/nbmiao) 或使用 `curl -sSL https://plugins.ncatbot.xyz/cli/nbmiao -o nbmiao` 来下载。请自行赋予可执行权限并添加至系统路径。
    
    2. 其他系统暂无二进制文件发行，可参考 [源代码](https://github.com/Isaaczhr/plugins.ncatbot.xyz/blob/main/cli/nbmiao.cpp) 自行编译。
    
