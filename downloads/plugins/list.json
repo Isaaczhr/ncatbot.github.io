@@ -1,0 +1,22 @@
+{
+    "plugins": [
+        {
+            "name": "echo",
+            "title": "Echo",
+            "title_zh": "回声",
+            "version": "1.0.0",
+            "description": "示例插件 echo: 回复收到的所有消息并",
+            "author": "Example",
+            "status": "y"
+        },
+        {
+            "name": "log",
+            "title": "Log",
+            "title_zh": "日志",
+            "version": "1.0.0",
+            "description": "示例插件 log: 打印收到的所有消息到控制台",
+            "author": "Example",
+            "status": "y"
+        }
+    ]
+}
